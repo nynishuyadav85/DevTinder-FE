@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+    const user = useSelector((store) => store.user)
+
     return (
         <div className="navbar bg-base-100 shadow-md px-4 py-2 border-b border-pink-200">
             <div className="flex-1">
@@ -10,29 +13,37 @@ const NavBar = () => {
             </div>
 
             <div className="flex items-center gap-4">
-                <div className="dropdown dropdown-end mx-5">
-                    <div tabIndex={0} role="button" className="btn btn-circle avatar border-2 border-pink-400 hover:border-pink-600 transition">
-                        <div className="w-10 rounded-full overflow-hidden">
-                            <img
-                                alt="User Profile"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                                className="object-cover w-full h-full"
-                            />
+                {user && (
+                    <>
+                        <span className="text-base font-semibold text-gray-800 bg-pink-100 px-3 py-1 rounded-full shadow-sm">
+                            Welcome, <span className="text-pink-600">{user?.firstName || "Developer"}</span>
+                        </span>
+
+                        <div className="dropdown dropdown-end mx-2">
+                            <div tabIndex={0} role="button" className="btn btn-circle avatar border-2 border-pink-400 hover:border-pink-600 transition">
+                                <div className="w-10 rounded-full overflow-hidden">
+                                    <img
+                                        alt="User Profile"
+                                        src={user?.photoUrl}
+                                        className="object-cover w-full h-full"
+                                    />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-white text-black rounded-box w-52">
+                                <li>
+                                    <a className="justify-between">
+                                        Profile
+                                        <span className="badge badge-error text-white">New</span>
+                                    </a>
+                                </li>
+                                <li><a>Settings</a></li>
+                                <li><a>Logout</a></li>
+                            </ul>
                         </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-white text-black rounded-box w-52">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge badge-error text-white">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div>
+                    </>
+                )}
             </div>
         </div>
     )
