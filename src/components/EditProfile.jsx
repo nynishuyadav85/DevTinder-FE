@@ -79,6 +79,16 @@ const EditProfile = ({ user }) => {
                                 onChange={(e) => setGender(e.target.value)}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-400 transition shadow-sm"
                             />
+
+                            {/*  todo create a dropdown for gender selection 
+                            <details className="dropdown">
+                                <summary className="btn m-1">Gender</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li><a>male</a></li>
+                                    <li><a>female</a></li>
+                                    <li><a>others</a></li>
+                                </ul>
+                            </details> */}
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 mb-1 block">Age</label>
