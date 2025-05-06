@@ -58,14 +58,9 @@ const EditProfile = ({ user }) => {
                                 className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-400 transition shadow-sm"
                             />
                         </div>
-                        <div className="md:col-span-2">
-                            <label className="text-sm font-medium text-gray-700 mb-1 block">About</label>
-                            <input
-                                type="text"
-                                value={about}
-                                onChange={(e) => setAbout(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-400 transition shadow-sm"
-                            />
+                        <div className='md:col-span-2'>
+                            <label className='text-sm font-medium text-gray-700 mb-1 block'>About</label>
+                            <textarea className="textarea" placeholder="Bio" value={about} onChange={(e) => setAbout(e.target.value)} ></textarea>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 mb-1 block">Photo URL</label>
