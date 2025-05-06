@@ -14,6 +14,7 @@ const EditProfile = ({ user }) => {
     const [gender, setGender] = useState(user.gender)
     const [age, setAge] = useState(user?.age)
     const [error, setError] = useState("")
+    const [showToast, setShowToast] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -21,6 +22,11 @@ const EditProfile = ({ user }) => {
         try {
             const res = await axios.patch(`${BASE_URL}/profile/edit`, { firstName, lastName, about, photoUrl, gender, age }, { withCredentials: true })
             dispatch(addUser(res.data.data))
+            setShowToast(true)
+            setTimeout(() => {
+                setShowToast(false)
+            }, 3000);
+
         } catch (error) {
             setError(error.message)
         }
@@ -107,7 +113,13 @@ const EditProfile = ({ user }) => {
                     </div>
                 </div>
             </div>
+            {showToast && <div className="toast toast-top toast-center">
+                <div className="alert alert-info">
+                    <span>Profile Saved</span>
+                </div>
+            </div>}
         </div>
+
     )
 }
 
