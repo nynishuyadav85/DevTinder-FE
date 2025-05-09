@@ -66,7 +66,6 @@ const Login = () => {
                 </div>
             </div>
 
-            {/* Animations */}
             <style>
                 {`
                 @keyframes fadeUp {
