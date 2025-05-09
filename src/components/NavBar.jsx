@@ -17,9 +17,7 @@ const NavBar = () => {
         } catch (error) {
             console.log("This is a error - " + error)
         }
-
     }
-
     return (
         <div className="navbar bg-base-100 shadow-md px-4 py-2 border-b border-pink-200">
             <div className="flex-1">
