@@ -22,13 +22,39 @@ const Connections = () => {
     fetchConnections()
   }, [])
 
-  if (!connections) return
+  if (!connections) return null
 
-  if (connections.length === 0) <h1>No connections found</h1>
+  if (connections.length === 0) {
+    return (
+      <h1 className="text-center text-xl text-gray-400 mt-10">No connections found</h1>
+    )
+  }
 
   return (
-    <div className='flex justify-center my-10'>
-      <h1 className="text-bold text-2xl">Connections</h1>
+    <div className="max-w-7xl mx-auto px-6 py-10 bg-gray-950 min-h-screen">
+      <h1 className="text-center text-4xl font-bold text-white mb-10 tracking-tight">Your Connections</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {connections.map((connection, index) => {
+          const { firstName, lastName, photoUrl, age, gender, about } = connection;
+
+          return (
+            <div
+              key={index}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-6 flex flex-col items-center text-white hover:shadow-primary transition duration-300 hover:scale-105"
+            >
+              <img
+                alt={`${firstName}'s profile`}
+                src={photoUrl}
+                className="w-28 h-28 rounded-full object-cover border-4 border-primary mb-4 shadow-md"
+              />
+              <h2 className="text-xl font-semibold">{firstName} {lastName}</h2>
+              <p className="text-sm text-gray-400 italic mb-2 capitalize">{gender}</p>
+              <p className="text-center text-gray-300">{about || "No bio provided."}</p>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
