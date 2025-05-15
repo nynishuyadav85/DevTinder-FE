@@ -21,12 +21,11 @@ const Requests = () => {
 
     useEffect(() => {
         fetchRequests()
-
     }, [])
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 bg-gray-950 min-h-screen">
-            <h1 className="text-center text-4xl font-bold text-white mb-10 tracking-tight">Your Connections</h1>
+            <h1 className="text-center text-4xl font-bold text-white mb-10 tracking-tight">Your Requests</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {request.map((request, index) => {
@@ -42,9 +41,18 @@ const Requests = () => {
                                 src={photoUrl}
                                 className="w-28 h-28 rounded-full object-cover border-4 border-primary mb-4 shadow-md"
                             />
-                            <h2 className="text-xl font-semibold">{firstName} {lastName}</h2>
+                            <h2 className="text-xl font-semibold text-center">{firstName} {lastName}, {age}</h2>
                             <p className="text-sm text-gray-400 italic mb-2 capitalize">{gender}</p>
-                            <p className="text-center text-gray-300">{about || "No bio provided."}</p>
+                            <p className="text-center text-gray-300 mb-4">{about || "No bio provided."}</p>
+
+                            <div className="flex gap-4 mt-auto">
+                                <button className="btn btn-error px-5 rounded-full shadow-md transition hover:brightness-110">
+                                    Reject
+                                </button>
+                                <button className="btn btn-success px-5 rounded-full shadow-md transition hover:brightness-110">
+                                    Accept
+                                </button>
+                            </div>
                         </div>
                     )
                 })}
