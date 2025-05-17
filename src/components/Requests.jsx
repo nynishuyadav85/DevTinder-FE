@@ -9,6 +9,15 @@ const Requests = () => {
     const request = useSelector((store) => store.request)
     const dispatch = useDispatch()
 
+    const reviewRequest = async (status, _id) => {
+        try {
+            const res = await axios.post(`${BASE_URL}/request/review/` + status + '/' + _id, {}, { withCredentials: true })
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const fetchRequests = async () => {
         try {
             const res = await axios.get(`${BASE_URL}/users/requests/received`, { withCredentials: true })
@@ -46,10 +55,10 @@ const Requests = () => {
                             <p className="text-center text-gray-300 mb-4">{about || "No bio provided."}</p>
 
                             <div className="flex gap-4 mt-auto">
-                                <button className="btn btn-error px-5 rounded-full shadow-md transition hover:brightness-110">
+                                <button className="btn btn-error px-5 rounded-full shadow-md transition hover:brightness-110" onClick={() => reviewRequest("rejected", request._id)}>
                                     Reject
                                 </button>
-                                <button className="btn btn-success px-5 rounded-full shadow-md transition hover:brightness-110">
+                                <button className="btn btn-success px-5 rounded-full shadow-md transition hover:brightness-110" onClick={() => reviewRequest("accepted", request._id)}>
                                     Accept
                                 </button>
                             </div>
