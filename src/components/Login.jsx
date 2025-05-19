@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
+import E from './E'
+
 
 const Login = () => {
     const [email, setEmail] = useState("test5@gmail.com");
@@ -63,6 +65,7 @@ const Login = () => {
                     >
                         🚀 Login
                     </button>
+                    {/* <E /> */}
                 </div>
             </div>
 
