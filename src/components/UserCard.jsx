@@ -3,7 +3,7 @@ import React from 'react'
 const UserCard = ({ user }) => {
     const { firstName, lastName, age, photoUrl, about, gender } = user || {}
     console.log(user)
-    const handleRequest () => {
+    const handleRequest = () => {
         console.log("Todo")
     }
     return (
