@@ -23,6 +23,11 @@ const Feed = () => {
     useEffect(() => {
         getFeed();
     }, [])
+
+    if (!feed) return
+
+    if (feed.length <= 0) return <div>No More Devs</div>
+
     return (
         feed && (
             <div className='flex justify-center my-10'>
