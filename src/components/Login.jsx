@@ -28,6 +28,16 @@ const Login = () => {
         }
     };
 
+    const handleSignUp = async () => {
+        try {
+            const res = await axios.post(`${BASE_URL}/signup`, { firstName, lastName, email, password }, { withCredentials: true })
+            dispatch(addUser(res.data.data))
+            navigate("/profile")
+        } catch (error) {
+            setError(error?.response?.data)
+        }
+    }
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#fdf2f8] via-[#f8e4f4] to-[#ede9fe] animate-backgroundFade px-4">
             <div className="backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl rounded-3xl p-8 w-full max-w-md animate-fadeUp">
@@ -87,7 +97,7 @@ const Login = () => {
 
                 <div className="flex justify-center mb-4">
                     <button
-                        onClick={handleLogin}
+                        onClick={isLoginForm ? handleLogin : handleSignUp}
                         className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300 ease-in-out"
                     >
                         {isLoginForm ? "🚀 Login" : "🚀 SignUp"}
